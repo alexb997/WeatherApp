@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const SearchBar = ({ onSearch }) => {
-  const [town, setTown] = useState('');
+function SearchBar({ onSearch }) {
+  const [town, setTown] = useState("");
 
   const handleInputChange = (e) => {
     setTown(e.target.value);
@@ -22,6 +22,6 @@ const SearchBar = ({ onSearch }) => {
       <button onClick={handleSearch}>Search</button>
     </div>
   );
-};
+}
 
 export default SearchBar;

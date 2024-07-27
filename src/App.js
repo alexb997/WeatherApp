@@ -1,23 +1,27 @@
 import "./App.css";
 import { useState } from "react";
 import SearchBar from "./components/search";
-import fetchWeatherData from "./components/fetchWeatherData";
+import FetchWeatherData from "./components/fetchWeatherData";
+import WeatherDisplay from "./components/weatherDisplay";
+import ForecastDisplay from "./components/forecastDisplay";
+import fetchForecastData from "./components/fetchForecastData";
 
 function App() {
   const [weather, setWeather] = useState(null);
+  const [forecast, setForecast] = useState(null);
   const [error, setError] = useState(null);
 
   const handleSearch = async (city) => {
     console.log("Searching for:", city);
     try {
-      const data = await fetchWeatherData(city);
+      const data = await FetchWeatherData(city);
       setWeather(data);
+      const forecastData = await fetchForecastData(city);
+      setForecast(forecastData);
       setError(null);
     } catch (error) {
       setError("Failed to fetch weather data. Please try again.");
     }
-    const data = await fetchWeatherData(city);
-    setWeather(data);
   };
 
   return (
@@ -25,13 +29,8 @@ function App() {
       <h1>Weather Dashboard</h1>
       <SearchBar onSearch={handleSearch} />
       {error && <p>{error}</p>}
-      {weather && (
-        <div>
-          <h2>{weather.name}</h2>
-          <p>{weather.weather[0].description}</p>
-          <p>{weather.main.temp}°C</p>
-        </div>
-      )}
+      <WeatherDisplay weather={weather} />
+      <ForecastDisplay forecast={forecast} />
     </div>
   );
 }
