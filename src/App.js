@@ -5,6 +5,7 @@ import FetchWeatherData from "./components/fetchWeatherData";
 import WeatherDisplay from "./components/weatherDisplay";
 import ForecastDisplay from "./components/forecastDisplay";
 import fetchForecastData from "./components/fetchForecastData";
+import { Row, Col, Container } from "react-bootstrap";
 
 function App() {
   const [weather, setWeather] = useState(null);
@@ -25,13 +26,13 @@ function App() {
   };
 
   return (
-    <div>
+    <Container className="App">
       <h1>Weather Dashboard</h1>
       <SearchBar onSearch={handleSearch} />
       {error && <p>{error}</p>}
       <WeatherDisplay weather={weather} />
       <ForecastDisplay forecast={forecast} />
-    </div>
+    </Container>
   );
 }
 

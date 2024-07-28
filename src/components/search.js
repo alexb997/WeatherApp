@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
 
 function SearchBar({ onSearch }) {
   const [town, setTown] = useState("");
@@ -12,15 +13,17 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={town}
-        onChange={handleInputChange}
-        placeholder="Enter city name"
-      />
-      <button onClick={handleSearch}>Search</button>
-    </div>
+    <Row className="justify-content-md-center">
+      <Col md="auto">
+        <input
+          type="text"
+          value={town}
+          onChange={handleInputChange}
+          placeholder="Enter city name"
+        />
+        <button onClick={handleSearch}>Search</button>
+      </Col>
+    </Row>
   );
 }
 
